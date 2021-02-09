@@ -59,7 +59,7 @@ public class Main extends Application {
         File sourceFolder = new File(src.getText());
         File destinationFolder = new File(dest.getText());
         File[] setups = sourceFolder.listFiles((dir, name) -> name.toLowerCase().endsWith(".sto"));
-        System.out.println("Alle Sets" + setups);
+        System.out.println("Alle Sets" + Arrays.toString(setups));
         if(setups!=null) {
             for (File f : setups) {
                 move(sourceFolder,f.getName(), destinationFolder);
@@ -81,9 +81,10 @@ public class Main extends Application {
             if (!finalDest.exists()) {
                 finalDest.mkdirs();
             }
-            Files.move(Paths.get(src + name), Paths.get(String.valueOf(finalDest)), StandardCopyOption.REPLACE_EXISTING);
+            Files.move(Paths.get(src +"\\"+ name), Paths.get(finalDest +"\\"+ car +"\\"+ name));
+            System.exit(1);
         }else{
-            //TODO fehler
+//            TODO fehler
         }
     }
 
