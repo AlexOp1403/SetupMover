@@ -68,13 +68,20 @@ public class Main extends Application {
     }
 
     private void move(File src, String name, File dest) throws IOException {
+        boolean pDSset;
         String car = "";
         String track = "";
         String[] names = name.split("_");
         System.out.println("Ein Set" + Arrays.toString(names));
-        for (String s:names) {
-            if(keywordCars.contains(s)) car = s;
-            if(keywordTracks.contains(s)) track = s;
+        pDSset = names[0].equals("PDS");
+        if (pDSset) {
+            car = names[1]; //TODO namen mappen
+            track = names[3];
+        } else {
+            for (String s : names) {
+                if (keywordCars.contains(s)) car = s;
+                if (keywordTracks.contains(s)) track = s;
+            }
         }
         if(!car.isEmpty() && !track.isEmpty()) {
             File finalDest = new File(dest + car + track);
